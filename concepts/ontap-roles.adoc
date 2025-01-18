@@ -1,0 +1,41 @@
+---
+permalink: concepts/ontap-roles.html 
+sidebar: sidebar 
+keywords:  
+summary: '您可以设置多个建议的ONTAP角色、以便使用适用于VMware vSphere的ONTAP工具和基于角色的访问控制(RBAC)。这些角色包含执行适用于VMware vSphere的ONTAP工具任务所执行的必要存储操作所需的ONTAP特权。' 
+---
+= 适用于VMware vSphere的ONTAP工具的建议ONTAP角色
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以设置多个建议的 ONTAP 角色，以便使用适用于 VMware vSphere 的 ONTAP 工具和基于角色的访问控制（ Role-Based Access Control ， RBAC ）。这些角色包含通过适用于VMware vSphere的ONTAP工具执行存储操作所需的ONTAP特权。
+
+要创建新用户角色、您应以运行ONTAP的存储系统的管理员身份登录。您可以使用ONTAP System Manager 9.8P1或更高版本创建ONTAP 角色。
+
+每个ONTAP角色都有一个关联的用户名和密码对、这些用户名和密码对构成该角色的凭据。如果不使用这些凭据登录，则无法访问与此角色关联的存储操作。
+
+作为一项安全措施、适用于VMware vSphere的ONTAP工具的特定ONTAP角色会按分层结构进行排序。这意味着、第一个角色的限制性最强、并且只具有与用于VMware vSphere存储操作的一组最基本的ONTAP工具关联的特权。下一个角色包括其自身的特权以及与上一个角色关联的所有特权。对于支持的存储操作、每个附加角色的限制都较小。
+
+以下是使用适用于VMware vSphere的ONTAP工具时建议使用的一些ONTAP RBAC角色。创建这些角色后、您可以将其分配给必须执行与存储相关的任务(例如配置虚拟机)的用户。
+
+|===
+
+
+| * 角色 * | *特权* 
+
+
+| 发现 | 通过此角色，您可以添加存储系统。 
+
+
+| 创建存储 | 使用此角色可以创建存储。此角色还包括与发现角色关联的所有特权。 
+
+
+| 修改存储 | 使用此角色可以修改存储。此角色还包括与"发现"角色和"创建存储"角色关联的所有特权。 
+
+
+| 销毁存储 | 使用此角色可以销毁存储。此角色还包括与"发现"角色、"创建存储"角色和"修改存储"角色关联的所有特权。 
+|===
+如果您要使用适用于VMware vSphere的ONTAP工具、则还应设置基于策略的管理(PBM)角色。通过此角色，您可以使用存储策略管理存储。此角色还要求您设置 `Discovery` 角色。

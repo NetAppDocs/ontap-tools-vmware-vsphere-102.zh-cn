@@ -1,0 +1,26 @@
+---
+permalink: configure/configure-network-access.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以选择允许使用少量特定ESXi主机地址执行数据存储库挂载操作。 
+---
+= 配置网络访问
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您有多个ESXi主机IP地址、则从主机中发现的所有IP地址都会默认添加到导出策略中。如果您不想将所有IP地址添加到导出策略中、请提供一个设置、以便允许使用逗号分隔列表或范围或CIDR中的特定IP地址、或者为每个vCenter设置所有这三个地址的组合。
+
+您可以选择允许使用一些特定的ESXi主机地址执行数据存储库挂载操作。如果未提供此设置、则导出策略将添加在预挂载步骤中发现的所有IP地址。如果提供了此设置、则适用于VMware vSphere的ONTAP工具将仅添加位于列出的IP地址或范围内的那些IP地址或范围。如果某个主机的任何IP地址都不属于列出的IP地址、则该主机上的挂载将失败。
+
+.步骤
+. 使用登录到vSphere Client `\https://vcenterip/ui`
+. 在快捷方式页面中，单击插件部分下的NetApp ONTAP tools*。
+. 在ONTAP工具的左窗格中，导航到*Settings*>*Manage Network Access*>*Edit*。
++
+使用逗号(,)分隔IP地址。您可以指定特定的IP地址、IP地址范围或IPv6地址。
+
+. 单击 * 保存 * 。
+

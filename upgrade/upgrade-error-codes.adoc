@@ -1,0 +1,146 @@
+---
+permalink: upgrade/upgrade-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 此页面概述了适用于VMware vSphere系统的ONTAP工具升级操作的错误代码。 
+---
+= 升级错误代码
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在对适用于VMware vSphere的ONTAP工具执行升级操作期间、您可能会遇到错误代码。错误代码的长度为五位数、其中前两位数表示遇到问题描述的脚本、后三位数表示该脚本中的特定工作流。
+
+所有错误日志都记录在ansible-perl-errors.log文件中、以便于跟踪和解决问题。此日志文件包含错误代码和失败的Ands清除 任务。
+
+
+NOTE: 此页面上提供的错误代码仅供参考。如果错误仍然存在或未提及解决方法、请联系支持团队。
+
+下表列出了错误代码和相应的文件名。
+
+|===
+
+
+| *错误代码* | *脚本名称* 
+
+
+| 00 | firstboot-network-config.pl、模式Deploy 
+
+
+| 01 | firstboot-network-config.pl、模式升级 
+
+
+| 02 | firstboot-inputs-validation.pl 
+
+
+| 03 | firstboot-deploy-otv-ng.pl、Deploy、ha 
+
+
+| 04 | firstboot-deploy-otv-ng.pl、Deploy、non-ha 
+
+
+| 05 | firstboot-deploy-otv-ng.pl、重新启动 
+
+
+| 06 | firstboot-deploy-otv-ng.pl、升级、ha 
+
+
+| 07 | firstboot-deploy-otv-ng.pl、升级、non-ha 
+
+
+| 08 | firstboot-otv-recovery.pl 
+|===
+错误代码的后三位数字表示脚本中的特定工作流错误：
+
+|===
+
+
+| *升级错误代码* | * 工作流 * | *分辨率* 
+
+
+| 063 | 将内容复制到恢复卷失败 | 执行基于快照的恢复。 
+
+
+| 068 | Debian软件包回滚失败 | 执行基于快照的恢复。 
+
+
+| 069 | 无法还原文件 | 执行基于快照的恢复。 
+
+
+| 070 | 无法删除备份 | 执行基于快照的恢复。 
+
+
+| 071 | Kubnetes集群运行状况不正常 | 执行基于快照的恢复。 
+
+
+| 072 | CR文件不在jail磁盘中 | 执行基于快照的恢复。 
+
+
+| 073 | 将强制协调标志设置为false时应用CR失败 | 执行基于快照的恢复。 
+
+
+| 074 | 挂载ISO失败 | 重试升级。 
+
+
+| 075 | 升级预检失败 | 重试升级。 
+
+
+| 076 | 注册表升级失败 | 执行基于快照的恢复。 
+
+
+| 077 | 注册表回滚失败 | 执行基于快照的恢复。 
+
+
+| 078 | 操作员升级失败 | 执行基于快照的恢复。 
+
+
+| 079 | 操作员回滚失败 | 执行基于快照的恢复。 
+
+
+| 080 | 服务升级失败 | 执行基于快照的恢复。 
+
+
+| 081 | 服务回滚失败 | 执行基于快照的恢复。 
+
+
+| 082 | 从容器中删除旧映像失败 | 执行基于快照的恢复。 
+
+
+| 083 | 删除备份失败 | 执行基于快照的恢复。 
+
+
+| 084 | 将JobManager重新更改为生产失败 | 执行基于快照的恢复。 
+
+
+| 085 | 无法创建CA证书密钥 | 执行基于快照的恢复。 
+
+
+| 086 | 创建服务器/专用密钥证书密钥失败 | 执行基于快照的恢复。 
+
+
+| 087 | 失败！完成10.0到10.1的升级后步骤 | 升级后步骤失败。 
+
+
+| 088 | 为jourald配置日志轮换失败 | 重试升级。 
+
+
+| 089 | 更改摘要日志轮换配置文件的所有权失败 | 重试升级。 
+
+
+| 091 | iSCSI升级失败 | 重试升级。 
+
+
+| 092 | iSCSI回滚失败 | 重试升级。 
+
+
+| 093 | Trident升级失败 | 重试升级。 
+
+
+| 094 | Trident回滚失败 | 重试升级。 
+
+
+| 095 | Debian升级失败 | 无法为DEBIian升级恢复。服务已升级、新Pod将运行 
+|===
+详细了解 https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/How_to_restore_ONTAP_tools_for_VMware_vSphere_if_upgrade_fails_from_version_10.0_to_10.1["从10.0升级到10.1失败时如何还原适用于VMware vSphere的ONTAP工具"]

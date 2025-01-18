@@ -1,0 +1,89 @@
+---
+permalink: concepts/vcenter-server-role-based-access-control-features.html 
+sidebar: sidebar 
+keywords:  
+summary: vCenter Server 提供了基于角色的访问控制（ Role-Based Access Control ， RBAC ），可用于控制对 vSphere 对象的访问。 
+---
+= 适用于VMware vSphere的ONTAP工具中基于角色的访问控制概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+vCenter Server提供了基于角色的访问控制(Role-Based Access Control、RBAC)、可用于控制对vSphere对象的访问。vCenter Server可在其清单中的许多不同级别使用用户和组权限以及角色和Privileges提供集中式身份验证和授权服务。vCenter Server具有五个用于管理RBAC的主要组件：
+
+|===
+
+
+| 组件 | 说明 
+
+
+| Privileges | 通过权限可以启用或拒绝在vSphere中执行操作的访问。 
+
+
+| 角色 | 一个角色包含一个或多个系统权限、其中每个权限定义了对系统中某个对象或某种类型的对象的管理权限。通过为用户分配角色、该用户将继承在该角色中定义的权限的功能。 
+
+
+| 用户和组 | 用户和组用于在权限中从Active Directory (AD)分配角色。vCenter Server具有自己的本地用户和组、您可以使用这些用户和组。 
+
+
+| 权限 | 通过权限、您可以将Privileges分配给用户或组、以便在vCenter Server中执行某些操作和更改对象。vCenter Server权限仅会影响登录到vCenter Server的用户、而不会影响直接登录到ESXi主机的用户。 
+
+
+| 对象 | 执行操作的实体。VMware vCenter对象包括数据中心、文件夹、资源池、集群、主机、 和VM 
+|===
+要成功完成任务、您应具有适当的vCenter Server RBAC角色。执行任务期间、适用于VMware vSphere的ONTAP工具会先检查用户的vCenter Server角色、然后再检查用户的ONTAP权限。
+
+
+NOTE: vCenter Server角色适用于适用于VMware vSphere vCenter用户的ONTAP工具、而不适用于管理员。默认情况下、管理员对产品具有完全访问权限、不需要为其分配角色。
+
+用户和组通过加入vCenter Server角色获得对某个角色的访问权限。
+
+
+
+== 有关分配和修改vCenter Server角色的要点
+
+只有在希望限制对vSphere对象和任务的访问时、才需要设置vCenter Server角色。否则，您可以以管理员身份登录。通过此登录，您可以自动访问所有 vSphere 对象。
+
+您分配角色的位置决定了用户可以执行的适用于VMware vSphere的ONTAP工具任务。您可以随时修改一个角色。如果更改了某个角色中的特权、则与该角色关联的用户应先注销、然后重新登录、以启用更新后的角色。
+
+
+
+== 适用于VMware vSphere的ONTAP工具附带的标准角色
+
+为了简化vCenter Server特权和RBAC的使用、适用于VMware vSphere的ONTAP工具为VMware vSphere角色提供了标准的ONTAP工具、可用于对VMware vSphere任务执行关键的ONTAP工具。此外、还有一个只读角色、可用于查看信息、但不能执行任何任务。
+
+您可以通过单击vSphere Client主页上的*角色*来查看适用于VMware vSphere的ONTAP工具标准角色。通过适用于VMware vSphere的ONTAP工具提供的角色、您可以执行以下任务：
+
+|===
+
+
+| * 角色 * | * 问题描述 * 
+
+
+| 适用于VMware vSphere管理员的NetApp ONTAP工具 | 提供执行某些适用于VMware vSphere的ONTAP工具任务所需的所有本机vCenter Server特权和ONTAP工具专用特权。 
+
+
+| 适用于VMware vSphere的NetApp ONTAP工具只读 | 提供对ONTAP工具的只读访问权限。这些用户无法对适用于VMware vSphere的任何ONTAP工具执行受访问控制的操作。 
+
+
+| 适用于VMware vSphere的NetApp ONTAP工具配置  a| 
+提供配置存储所需的一些本机vCenter Server特权和ONTAP工具专用特权。您可以执行以下任务：
+
+* 创建新数据存储库
+* 管理数据存储库
+
+
+|===
+未向vCenter Server注册ONTAP工具管理器管理员角色。此角色特定于ONTAP工具管理器。
+
+如果贵公司要求您实施的角色比适用于VMware vSphere的标准ONTAP工具角色限制性更强、则可以使用适用于VMware vSphere的ONTAP工具创建新角色。
+
+在这种情况下、您可以克隆VMware vSphere角色所需的ONTAP工具、然后编辑克隆的角色、使其仅具有用户所需的权限。
+
+
+
+== ONTAP存储后端和vSphere对象的权限
+
+如果vCenter Server权限足够、则适用于VMware vSphere的ONTAP工具会检查与存储后端凭据(用户名和密码)关联的ONTAP RBAC特权(您的ONTAP角色)。 确定您是否有足够的权限对该存储后端执行适用于VMware vSphere的ONTAP工具任务所需的存储操作。如果您具有正确的ONTAP Privileges、则可以访问存储后端并对VMware vSphere执行ONTAP工具任务。ONTAP角色决定了可对存储后端执行的适用于VMware vSphere的ONTAP工具任务。

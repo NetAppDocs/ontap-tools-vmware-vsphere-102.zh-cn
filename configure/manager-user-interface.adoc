@@ -1,0 +1,25 @@
+---
+permalink: configure/manager-user-interface.html 
+sidebar: sidebar 
+keywords: ontap tools manager, managerui 
+summary: ONTAP工具管理器为VMware vSphere管理员提供了更多的ONTAP工具控制和功能、有助于全面管理设备、租户和存储后端。 
+---
+= ONTAP工具管理器用户界面
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+适用于VMware vSphere的ONTAP工具是一个多租户系统、可管理多个vCenter Server实例。通过ONTAP工具管理器、VMware vSphere管理员可以通过受管vCenter Server实例和板载存储后端对ONTAP工具进行更多控制。
+
+ONTAP工具管理器有助于：
+
+* vCenter Server实例管理—将vCenter Server实例添加到ONTAP工具并对其进行管理。
+* 存储后端管理—将ONTAP存储集群添加到适用于VMware vSphere的ONTAP工具并进行管理、然后将其全局映射到已部署的vCenter Server实例。
+* 日志捆绑包下载—收集适用于VMware vSphere的ONTAP工具的日志文件。
+* 证书管理-将自签名证书更改为自定义CA证书、并续订或刷新VASA Provider的所有证书。
+* Password management (密码管理)-重置用户的OVA应用程序密码。
+
+
+要访问ONTAP工具管理器、请 `\https://loadBalanceIP:8443/virtualization/ui/`从浏览器启动、然后使用您在部署期间提供的适用于VMware vSphere的ONTAP工具管理员凭据登录。

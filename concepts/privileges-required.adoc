@@ -1,0 +1,24 @@
+---
+permalink: concepts/privileges-required.html 
+sidebar: sidebar 
+keywords:  
+summary: 不同的适用于VMware vSphere的ONTAP工具任务需要不同的特权组合、这些特权组合特定于适用于VMware vSphere的ONTAP工具、而本机vCenter Server特权则不同。 
+---
+= 适用于VMware vSphere的ONTAP工具任务所需的特权
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+不同的适用于VMware vSphere的ONTAP工具任务需要不同的特权组合、这些特权组合特定于适用于VMware vSphere的ONTAP工具、而本机vCenter Server特权则不同。
+
+要访问适用于VMware vSphere的ONTAP工具图形用户界面、您应在正确的vSphere对象级别分配产品级的ONTAP工具专用查看特权。如果您不使用此权限登录、则在单击NetApp图标时、适用于VMware vSphere的ONTAP工具会显示一条错误消息、并阻止您访问ONTAP工具。
+
+以*view*权限，您可以访问适用于VMware vSphere的ONTAP工具。此权限不允许您在适用于VMware vSphere的ONTAP工具中执行任务。要执行适用于VMware vSphere的任何ONTAP工具任务、您应具有执行这些任务所需的正确ONTAP工具专用特权和本机vCenter Server特权。
+
+分配级别决定了您可以查看的用户界面部分。通过为根对象(文件夹)分配查看权限、您可以通过单击NetApp图标进入适用于VMware vSphere的ONTAP工具。
+
+您可以将查看权限分配给其他vSphere对象级别、但这样做会限制适用于VMware vSphere的ONTAP工具菜单的显示和使用。
+
+建议在根对象中分配任何包含查看特权的权限。

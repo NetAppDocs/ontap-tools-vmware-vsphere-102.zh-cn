@@ -1,0 +1,159 @@
+---
+permalink: deploy/ontap-tools-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以在小型或中型配置中配置非HA单节点。 
+---
+= 部署适用于VMware vSphere的ONTAP工具
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在两种配置中部署适用于VMware vSphere的ONTAP工具：
+
+* 非HA单节点配置
+* HA配置
+
+
+[role="tabbed-block"]
+====
+.非HA单节点配置
+--
+您可以采用小型或中型配置部署非HA单节点配置。
+
+* 小型非HA配置包含8个CPU和16 GB RAM。
+* 中型非HA配置包含12个CPU和24 GB RAM。
+
+
+* 开始之前 *
+
+确保网络路由存在。存储数据网络必须可从VM管理网络访问。例如、登录到ONTAP >运行命令_network route create -vserver <SVM>-Destination 0.0.0.0/0 -Gateway <gateway_ip>_
+
+* 步骤 *
+
+.  `.zip`从下载包含适用于VMware vSphere的ONTAP工具的二进制文件(_.ova_)和签名证书的文件 https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp 支持站点"^]。
+. 登录到vSphere服务器。
+. 导航到已创建的资源池、集群或要部署OVA的主机。
+. 右键单击所需位置并选择*Deploy OVF temple...*。
++
+
+NOTE: 请勿在VMware vSphere虚拟机所管理的vvol数据存储库上部署适用于该虚拟机的ONTAP工具。
+
+. 通过_.ova_文件的URL选择OVA文件，或者浏览到保存_.ova_文件的文件夹，然后单击*Next*。
+. 选择计算机资源，然后单击*Next*。
+. 查看模板的详细信息，然后单击*Next*。
+. 阅读并接受许可协议。
+. 选择部署配置，然后单击*Next*。
++
+高级部署选项会使用通过ONTAP的动态存储配置程序来创建卷、而简单的部署则会使用本地存储来创建卷。
+
+. 为配置和磁盘文件选择存储，然后单击*Next*。
+. 为每个源网络选择目标网络，然后单击*Next*。
+. 在*自定义模板*中，输入所需的详细信息，然后单击*下一步*
++
+** 启用SVM范围后、您应事先使用管理IP地址启用SVM支持。
+** 此处提供的信息已在安装过程中进行了正确模式的验证。如果出现差异、Web控制台上会显示一条错误消息、并提示您更正提供的任何错误信息。
+** 主机名必须由大写字母(A-z)、小写字母(a-z)、数字(0-9 )或连字符(-)特殊字符组成。如果要配置双堆栈、请指定映射到IPv6地址的主机名。
++
+
+NOTE: 不支持纯IPv6。具有IPv6和IPv4地址的VLAN支持混合模式。
+
+
+
+. 查看*Ready to Complete*(准备完成*)窗口中的详细信息，选择*Complete*(完成*)。
++
+创建部署任务后、vSphere任务栏中将显示进度。
+
+. 完成此任务后、打开虚拟机的电源。
+
+
+--
+.HA配置
+--
+您可以在小型、中型或大型配置中配置HA三个节点。HA部署使用三项技术来存储服务数据。
+
+* 小型HA三个节点包含8个CPU、每个节点具有16 GB RAM。
+* 中型HA：三个节点包含12个CPU、每个节点具有24 GB RAM。
+* 大型HA三个节点包含16个CPU、每个节点具有32 GB RAM。
+
+
+* 开始之前 *
+
+此任务为您提供了有关如何在小型、中型或高配置中安装HA三个节点的说明。
+
+要部署HA三节点配置、必须先创建内容库。VMware中的内容库是一个容器对象、用于存储VM模板、vapp模板和其他类型的文件。使用内容库进行部署可为您提供无缝体验、因为它不依赖于网络连接。
+
+
+NOTE: 您应将内容库存储在共享数据存储库上、以便集群中的所有主机都可以访问该内容库。在HA配置中部署OVA之前、您需要创建一个内容库来存储此OVA。
+
+
+NOTE: 内容库模板一旦上传、不应在部署后删除、因为它将在重新启动期间使用。
+
+按照以下步骤创建内容库：
+
+.  `.zip`从下载包含适用于VMware vSphere的ONTAP工具的二进制文件(_.ova_)和签名证书的文件 https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp 支持站点"^]。
+. 使用登录到vSphere Client `\https://vcenterip/ui`
+. 选择vSphere Client旁边的水平省略号并选择*内容库*。
+. 选择页面右侧的*创建*。
+. 提供库的名称并创建内容库。
+. 导航到您创建的内容库。
+. 选择页面右侧的*Actions*并选择*Import Item*并导入OVA文件。
+
+
+
+NOTE: 有关详细信息、请参见 https://blogs.vmware.com/vsphere/2020/01/creating-and-using-content-library.html["创建和使用内容库"]博客。
+
+确保已将OVA导入到内容库中。请随时提供内容库的名称以及您为OVA项目提供的库项目名称。
+
+
+NOTE: 在继续部署之前、请在安装ONTAP工具期间将清单上的集群分布式资源计划程序(DRS)设置为"保守"。这样可确保虚拟机在安装期间不会迁移。
+
+* 步骤 *
+
+.  `.zip`从下载包含适用于VMware vSphere的ONTAP工具的二进制文件(_.ova_)和签名证书的文件 https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["NetApp 支持站点"^]。
+. 登录到vSphere服务器。
+. 导航到已创建的资源池、集群或要部署OVA的主机。
+. 右键单击所需位置并选择*Deploy OVF temple...*。
++
+
+NOTE: 请勿在VMware vSphere虚拟机所管理的vvol数据存储库上部署适用于该虚拟机的ONTAP工具。
+
+. 通过_.ova_文件的URL选择OVA文件，或者浏览到保存_.ova_文件的文件夹，然后单击*Next*。
+. 要从内容库中部署适用于VMware vSphere的ONTAP工具、请执行以下操作：
++
+.. 转到您的内容库、然后单击要部署的库项目。
+.. 单击*Actions*>*从此模板新建虚拟机*
+
+
+. 选择计算机资源，然后单击*Next*。
+. 查看模板的详细信息，然后单击*Next*。
+. 阅读并接受许可协议，然后单击*Next*。
+. 选择部署配置，然后单击*Next*。
+. 为配置和磁盘文件选择存储，然后单击*Next*。
+. 为每个源网络选择目标网络，然后单击*Next*。
+. 在*Customize temple*(自定义模板*)窗口中，填写必填字段，然后单击*Next*(下一步*)。
++
+** 在HA部署模式下、请勿在部署后重命名虚拟机名称。
+** 启用SVM范围后、您应事先使用管理IP地址启用SVM支持。
+** 此处提供的信息已在安装过程中进行了正确模式的验证。如果出现差异、Web控制台上会显示一条错误消息、并提示您更正提供的任何错误信息。
+** 主机名必须由大写字母(A-z)、小写字母(a-z)、数字(0-9 )或连字符(-)特殊字符组成。如果要配置双堆栈、请指定映射到IPv6地址的主机名。
++
+
+NOTE: 不支持纯IPv6。具有IPv6和IPv4地址的VLAN支持混合模式。
+
+
+
+. 查看*Ready to Complete*(准备完成*)窗口中的详细信息，选择*Complete*(完成*)。
++
+创建部署任务后、vSphere任务栏中将显示进度。
+
+. 完成此任务后、打开虚拟机的电源。
+
+
+--
+====
+您可以在VM的Web控制台中跟踪安装进度。
+
+如果在OVF表单中输入的值存在任何差异、则会显示一个对话框、提示您采取更正操作。在对话框中进行必要的更改、使用选项卡按钮导航并选择"确定"。您可以尝试三次以更正任何问题。如果尝试三次后问题仍然存在、则安装过程将停止、建议在新虚拟机上重试安装。

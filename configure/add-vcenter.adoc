@@ -1,0 +1,37 @@
+---
+permalink: configure/add-vcenter.html 
+sidebar: sidebar 
+keywords:  
+summary: 'vCenter Server实例是中央管理平台、可用于控制主机、虚拟机(VM)和存储后端。' 
+---
+= 添加vCenter Server实例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+vCenter Server提供了一个中央管理平台、可用于控制主机、虚拟机(VM)和存储后端。
+
+* 关于此任务 *
+
+您可以使用一个适用于VMware vSphere的ONTAP工具实例添加和管理多个vCenter Server实例。
+
+* 步骤 *
+
+. 从Web浏览器启动ONTAP工具管理器： `\https://loadBalanceIP:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于VMware vSphere的ONTAP工具管理员凭据登录。
+. 从边栏中选择*vcCenter*。
+. 选择*添加*到板载vCenter Server实例、并提供vCenter IP地址/主机名、用户名、密码和端口详细信息。
+
+
+将vCenter Server实例添加到ONTAP工具时、系统会自动执行以下操作：
+
+* 已注册vCenter Client插件
+* 插件和API的自定义权限将推送到vCenter Server实例
+* 创建自定义角色以管理用户。
+
+
+添加vCenter Server实例时、适用于VMware vSphere插件的ONTAP工具会自动作为远程插件注册到vCenter Server。此插件可通过vSphere用户界面快捷方式查看。
+
+此插件会使用密钥_com.netapp.otv_注册到vCenter Server实例中、并可在vCenter Server实例的扩展管理器中查看。

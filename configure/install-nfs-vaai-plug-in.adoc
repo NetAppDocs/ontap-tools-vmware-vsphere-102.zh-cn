@@ -1,0 +1,58 @@
+---
+permalink: configure/install-nfs-vaai-plug-in.html 
+sidebar: sidebar 
+keywords:  
+summary: '您可以使用适用于VMware vSphere的NetApp工具安装适用于VMware vStorage APIS for Array Integration \(VAAI\)的ONTAP NFS插件。' 
+---
+= 安装 NFS VAAI 插件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用适用于VMware vSphere的NetApp工具安装适用于vSphere的ONTAP阵列集成API (VAAI) NFS插件。
+
+* 您需要的内容 *
+
+* 您应已(`.vib`从NetApp支持站点下载适用于VAAI的NFS插件的安装包。 https://mysupport.netapp.com/site/products/all/details/nfsplugin-vmware-vaai/downloads-tab["适用于 VMware VAAI 的 NetApp NFS 插件"]
+* 您应已将ESXi主机7.0U3最新修补程序安装为最低版本、并将ONTAP 9.12.1Px (最新P版本) 9.13.1Px、9.14.1Px或更高版本安装为。
+* 您应已启动ESXi主机并挂载NFS数据存储库。
+* 您应已将 `DataMover.HardwareAcceleratedMove`、 `DataMover.HardwareAcceleratedInit`和 `VMFS3.HardwareAcceleratedLocking`主机设置的值设置为"`1`"。
++
+更新 " 建议设置 " 对话框后，这些值将在 ESXi 主机上自动设置。
+
+* 您应已使用 `vserver nfs modify -vserver vserver_name -vstorage enabled`命令在Storage Virtual Machine (SVM)上启用vStorage选项。
+* 如果您使用的是NetApp NFS VAAI插件2.0、则应安装ESXi 7.0U3或更高版本。
+* 由于vSphere 6.5已弃用、您应已安装vSphere 7.0U3的最新修补程序版本。
+* NetApp NFS VAAI插件2.0.1 (内部版本16)支持vSphere 8.x。
+
+
+* 步骤 *
+
+. 在适用于VMware vSphere的ONTAP工具主页中单击*Settings*。
+. 单击 * NFS VAAI 工具 * 选项卡。
+. 将VAAI插件上传到vCenter Server后、在*现有版本*部分中选择*更改*。如果VAAI插件未上传到vCenter Server、请选择*上传*按钮。
+. 浏览并选择 `.vib`文件，然后单击*Upload*将文件上传到ONTAP工具。
+. 单击*在ESXI主机上安装*，选择要安装NFS VAAI插件的ESXi主机，然后单击*安装*。
++
+仅会显示符合此插件安装条件的ESXi主机。您应按照屏幕上的说明完成安装。您可以在vSphere Web Client的近期任务部分中监控安装进度。
+
+. 安装完成后、您应手动重新启动ESXi主机。
++
+当VMware管理员重新启动ESXi主机时、适用于VMware vSphere的ONTAP工具会自动检测NFS VAAI插件。您无需执行其他步骤即可启用此插件。
+
+
+
+
+
+=== 为VAAI副本卸载配置正确的NFS导出策略
+
+在NFS环境中配置VAAI时、应在配置导出策略规则时牢记以下要求：
+
+* 相关卷需要允许NFSv4调用。
+* root用户应保持root身份、并且所有接合父卷都应允许使用NFSv4。
+* 需要在相关NFS服务器上设置VAAI支持选项。
+
+
+有关此过程的详细信息、请参阅 https://kb.netapp.com/on-prem/ontap/DM/VAAI/VAAI-KBs/Configure_the_correct_NFS_export_policies_for_VAAI_copy_offload["为VAAI副本卸载配置正确的NFS导出策略"]知识库文章。

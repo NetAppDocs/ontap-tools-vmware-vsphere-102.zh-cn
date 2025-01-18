@@ -1,0 +1,8 @@
+---
+section: automation
+title: 使用 REST API 实现自动化
+entries:
+- title: REST API 概述
+  url: "/automation/overview-rest-apis.html"
+- title: 开始使用 REST API
+  url: "/automation/get-started-with-the-rest-api.html"

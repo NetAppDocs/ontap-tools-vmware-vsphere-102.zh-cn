@@ -1,0 +1,50 @@
+---
+permalink: release-notes/whats-new-otv-102.html 
+sidebar: sidebar 
+keywords: 'what"s new, release notes, otv, 10.2, ONTAP tools for VMware vSphere' 
+summary: 了解适用于VMware vSphere 10.2的ONTAP工具中提供的新功能。 
+---
+= 适用于VMware vSphere 10.2的ONTAP工具中的新增功能
+:allow-uri-read: 
+
+
+[role="lead"]
+了解适用于VMware vSphere 10.2的ONTAP工具中提供的新功能。
+
+[cols="30%,70%"]
+|===
+| 更新 | 说明 
+
+
+ a| 
+xref:../manage/storage-view-datastore.html#ontap-storage-views-for-nfs-datastores[NVMe协议支持]
+ a| 
+适用于VMware vSphere 10.2的ONTAP工具支持使用NVMe/FC和NVMe/TCP协议来配置VMFS数据存储库。vCenter界面中无缝集成的工作流简化了数据存储库配置。使用NVMe/FC和NVMe/TCP协议配置VMFS数据存储库的优势包括：优化的性能、大规模可扩展性和高效处理多个数据请求、显著缩短延迟以及高效的资源管理。与传统数据协议相比、基于NVMe的存储IO的CPU利用率可降低多达50%。
+
+
+
+ a| 
+xref:../configure/create-vvols-datastore.html[光纤通道(Fibre Channel、FC)协议支持]
+ a| 
+适用于VMware vSphere 10.2的ONTAP工具支持使用FC协议配置vvol和VMFS数据存储库。FC协议支持的优势包括高性能、可靠性和稳定性、可扩展性、增强的安全性以及高效的资源管理。
+
+
+
+ a| 
+xref:../configure/protect-cluster.html[SnapMirror活动同步]
+ a| 
+适用于VMware vSphere 10.2的ONTAP工具对SnapMirror主动同步的支持包括一项全新的保护集群功能、该功能可通过端到端配置工作流在vCenter UI中构建vSphere Metro Storage。这样、即使在整个站点发生故障时、业务服务也可以继续运行、从而支持应用程序使用二级副本透明地进行故障转移。
+
+[NOTE]
+====
+除了SnapMirror活动同步之外、SnapMirror向导还可以配置SnapMirror异步和同步。
+
+====
+
+
+ a| 
+xref:../protect/enable-storage-replication-adapter.html[Storage Replication Adapter (SRA)增强功能]
+ a| 
+SRA可实施基于VMware Site Recovery Manager (SRM)规范的灾难恢复(Disaster Recovery、DR)解决方案。通过SRM集成的SnapMirror主动同步支持灾难恢复规划和流程编排解决方案、以提供透明的应用程序故障转移。
+
+|===

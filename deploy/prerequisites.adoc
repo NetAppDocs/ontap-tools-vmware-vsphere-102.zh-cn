@@ -1,0 +1,163 @@
+---
+permalink: deploy/prerequisites.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 在部署适用于VMware vSphere的ONTAP工具之前、您应熟悉部署软件包的空间要求以及一些基本主机系统要求。 
+---
+= 部署适用于VMware vSphere的ONTAP工具的前提条件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在部署适用于VMware vSphere的ONTAP工具之前、您应熟悉部署软件包的空间要求以及一些基本主机系统要求。
+
+您可以将适用于VMware vSphere的ONTAP工具与VMware vCenter Server虚拟设备(vCSA)结合使用。您应在包含ESXi系统的受支持vSphere客户端上部署适用于VMware vSphere的ONTAP工具。
+
+
+
+== 系统要求
+
+* *每个节点的安装包空间要求*
++
+** 10 GB用于精简配置安装
+** 248 GB用于厚配置安装
+
+
+* *每个节点的主机系统规模估算要求*根据部署规模和每个节点的建议内存如下表所示：
+
+
+|===
+
+
+| *部署类型* | * CPU * | *内存(GB)* 
+
+
+| 小型(S) | 8 | 16 
+
+
+| 中(M) | 12 | 24 
+
+
+| 大(L) | 16 | 32 
+|===
+有关详细信息、请参阅下面的_配置限制以部署适用于VMware vSphere的ONTAP工具_一节。
+
+
+
+== 最低存储和应用程序要求
+
+|===
+| 存储、主机和应用程序 | 最低版本要求 
+
+
+| ONTAP | ONTAP 9．12.1、9．1．1、9．1．1和9．1．1的最新修补程序版本。 
+
+
+| ESXi主机 | ESXi 7.0.3 
+
+
+| vCenter Server | vCenter 7.0u3 
+
+
+| VASA 提供程序 | 3.0 
+
+
+| OVA应用程序 | 10.2 
+|===
+互操作性表工具(IMT)提供了有关受支持的ONTAP、vCenter Server、ESXi主机和插件应用程序版本的最新信息。
+
+https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src=IMT["互操作性表工具"^]
+
+
+
+== 部署适用于VMware vSphere的ONTAP工具的配置限制
+
+您可以使用下表作为指南来配置适用于VMware vSphere的ONTAP工具。
+
+|===
+
+
+| * 部署 * | * 类型 * | *数量* | *主机数* | *协议类型* 
+
+
+| 轻松部署 | 小型(S) | ~1、K | 32 | NFS、iSCSI 
+
+
+| 轻松部署 | 中(M) | ~24K | 64 | NFS、iSCSI 
+
+
+| 高可用性 | 小型(S) | ~24K | 64 | NFS、iSCSI 
+
+
+| 高可用性 | 中(M) | ~50 k | 128 | NFS、iSCSI 
+
+
+| 高可用性 | 大(L) | ~100k | 256 [注意]表中的主机数显示了来自多个vCenter的主机总数。 | NFS、iSCSI 
+|===
+有关每个节点的主机系统规模估算要求的详细信息，请参见link:../deploy/prerequisites.html["部署适用于VMware vSphere的ONTAP工具的前提条件"]。
+
+
+
+== 适用于VMware vSphere的ONTAP工具—Storage Replication Adapter (SRA)
+
+下表显示了使用适用于VMware vSphere的ONTAP工具时每个VMware Live Site Recovery实例支持的数量。
+
+|===
+| *vCenter部署大小* | *小* | *中* 
+
+
+| 配置为使用基于阵列的复制进行保护的虚拟机总数 | 2000 | 5000 
+
+
+| 基于阵列的复制保护组总数 | 250 | 250 
+
+
+| 每个恢复计划的保护组总数 | 50 | 50 
+
+
+| 复制的数据存储库数量 | 255 | 255 
+
+
+| VM数量 | 4000 | 7000 
+|===
+下表显示了VMware Live Site Recovery的数量以及适用于VMware vSphere部署规模的相应ONTAP工具。
+
+|===
+
+
+| *VMware Live Site Recovery实例数* | * ONTAP工具部署规模* 
+
+
+| 最多4个 | 小型 
+
+
+| 4至8 | 中 
+
+
+| 8个以上 | 大型 
+|===
+有关详细信息，请参阅 https://docs.vmware.com/en/VMware-Live-Recovery/services/vmware-live-site-recovery/GUID-3AD7D565-8A27-450C-8493-7B53F995BB14.html["VMware Live Site Recovery的操作限制"]。
+
+
+
+== 部署前检查
+
+在继续部署之前、请确保已准备好以下各项：
+
+* 已设置并配置vCenter Server环境。
+* (可选)对于自动化用户—收集NetApp提供的Postman集合JSON文件。
+* 已准备好用于部署OVA的父vCenter Server凭据。
++
+
+NOTE: 父vCenter Server密码不应包含这些特殊字符($、'、")。
+
+* 您拥有适用于VMware vSphere的ONTAP工具要连接到的vCenter Server实例的登录凭据、以便在部署后进行注册。
+* 已删除浏览器缓存。
+* 确保有三个可用IP地址可用于非HA部署—一个用于负载平衡器的可用IP地址、一个用于Kubnetes控制平台的可用IP地址和一个用于节点的IP地址。对于HA部署、除了这三个IP地址之外、第二个和第三个节点还需要两个IP地址。在为HA和非HA部署分配之前、应将主机名映射到DNS上的可用IP地址。HA部署中的所有五个IP地址以及非HA部署中的三个IP地址都应位于为部署选择的同一个VLAN上。
+
+
+* 确保在多vCenter部署中、颁发证书的域名映射到虚拟IP地址、在该部署中、自定义CA证书是必需的。对域名执行_nslookup_ check以检查域是否已解析为预期的IP地址。应使用负载平衡器IP地址的域名和IP地址创建证书。
+* 在非HA高级和HA配置中安装适用于VMware vSphere 10.2的ONTAP工具之前、请查看知识库文章： https://kb.netapp.com/on-prem/ontap/da/NAS/NAS-KBs/pre-requisites_for_installing_OTV_10.1_and_10.2_in_NonHA_Advanced_and_HA["非HA高级配置和HA配置的前提条件"]
+

@@ -1,0 +1,30 @@
+---
+permalink: manage/mount-datastores-on-host.html 
+sidebar: sidebar 
+keywords:  
+summary: 挂载数据存储库可为其他主机提供存储访问。将主机添加到 VMware 环境后，您可以将数据存储库挂载到其他主机上。 
+---
+= 挂载NFS和VMFS数据存储库
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+挂载数据存储库可提供对其他(NFS/VMFS)主机的存储访问。将主机添加到 VMware 环境后，您可以将数据存储库挂载到其他主机上。
+
+* 根据vSphere客户端版本和所选数据存储库类型、某些右键单击操作已禁用或不可用。如果您使用的是vSphere Client 8.0或更高版本、则某些右键单击选项将处于隐藏状态。
+* 从vSphere 7.0U3到vSphere 8.0版本、即使显示这些选项、该操作也将被禁用。
+* 如果主机集群采用统一配置进行保护、则挂载数据存储库将被禁用。
+
+
+* 步骤 *
+
+. 在 vSphere Client 主页页面中，单击 * 主机和集群 * 。
+. 在导航窗格中，选择包含主机的数据中心。
+. 对任何其他主机重复步骤 2 。
+. 要在主机或主机集群上挂载NFS/VMFS数据存储库，请右键单击该数据存储库NetApp ONTAP，然后选择*NFS tools*>*Mount DataSes*。
+. 选择要挂载的数据存储库，然后单击*Mount*。
+
+
+您可以在近期任务面板中跟踪进度。

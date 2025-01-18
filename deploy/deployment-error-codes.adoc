@@ -1,0 +1,146 @@
+---
+permalink: deploy/deployment-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 此页面概述了适用于VMware vSphere系统的ONTAP工具的部署、重新启动和恢复操作的错误代码。 
+---
+= 部署错误代码
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在适用于VMware vSphere的ONTAP工具部署、重新启动和恢复操作期间、您可能会遇到错误代码。错误代码的长度为五位数、其中前两位数表示遇到问题描述的脚本、后三位数表示该脚本中的特定工作流。
+
+所有错误日志都记录在ansible-perl-errors.log文件中、以便于跟踪和解决问题。此日志文件包含错误代码和失败的Ands清除 任务。
+
+
+NOTE: 此页面上提供的错误代码仅供参考。如果错误仍然存在或未提及解决方法、请联系支持团队。
+
+下表列出了错误代码和相应的文件名。
+
+|===
+
+
+| *错误代码* | *脚本名称* 
+
+
+| 00 | firstboot-network-config.pl、模式Deploy 
+
+
+| 01 | firstboot-network-config.pl、模式升级 
+
+
+| 02 | firstboot-inputs-validation.pl 
+
+
+| 03 | firstboot-deploy-otv-ng.pl、Deploy、ha 
+
+
+| 04 | firstboot-deploy-otv-ng.pl、Deploy、non-ha 
+
+
+| 05 | firstboot-deploy-otv-ng.pl、重新启动 
+
+
+| 06 | firstboot-deploy-otv-ng.pl、升级、ha 
+
+
+| 07 | firstboot-deploy-otv-ng.pl、升级、non-ha 
+
+
+| 08 | firstboot-otv-recovery.pl 
+|===
+错误代码的后三位数字表示脚本中的特定工作流错误：
+
+|===
+
+
+| *部署错误代码* | * 工作流 * | *分辨率* 
+
+
+| 050 | SSH密钥生成失败 | 重新启动主虚拟机(VM)。 
+
+
+| 051 | 部署二级VM失败 | *如果创建了第二个和第三个VM、则在启动二级VM并重新启动主VM之前、请确保有足够的CPU/内存资源可用。*如果第二个和第三个VM正在执行适用于VMware vSphere的Deploy ONTAP工具模板任务、请等待此任务完成、然后启动这些VM并重新启动主VM。*重新部署。 
+
+
+| 052 | 复制SSH密钥失败 | 重新启动主VM。 
+
+
+| 053 | 安装RKE2失败 | 运行以下命令并重新启动主VM或重新部署：sudo rke2-killall.sh (所有VM) sudo rke2-uninstall.sh (所有VM)。 
+
+
+| 054 | 设置kubeconfig | 重新部署 
+
+
+| 055 | 部署注册表失败 | 如果存在注册表POD、请等待POD准备就绪、然后重新启动主VM或重新部署。 
+
+
+| 056 | 登录iSCSI失败 | 确保已在ONTAP上启用并正确配置iSCSI协议。确保提供的iSCSI数据LIF IP地址正确且联机。如果先前的点正确、请重新启动虚拟机。否则、重新部署。 
+
+
+| 057 | TRIdent部署失败 | *确保可从虚拟机访问管理LIF和数据LIF IP地址。*确保已在ONTAP上启用并正确配置NFS或iSCSI协议。*确保提供的NFS/iSCSI数据LIF IP地址正确且联机。*请确保提供的用户名和密码正确无误、并且用户有足够的权限创建卷。*如果以上所有点都正确、请重新启动。否则、重新部署。 
+
+
+| 058 | 三端磁盘导入失败 | *请确保提供的用户名和密码正确无误、并且用户有足够的权限来创建、挂载、克隆和删除卷。*确保使用相同的ONTAP设置来恢复设置并重试恢复。 
+
+
+| 059 | KubeVip部署失败 | 确保在部署期间提供的Kubbernetes控制平台的虚拟IP地址和负载平衡器IP地址属于同一个VLAN且为空闲IP地址。如果先前所有点都正确、请重新启动。否则、重新部署。 
+
+
+| 060 | 操作员部署失败 | 重新启动 
+
+
+| 061 | 服务部署失败 | 在NTV-system命名空间中执行基本Kubirnetes调试、例如GET Pod、GET RS、GET Svc等、有关详细信息和错误日志、请访问/var/log/ansible-perl-errors.log和/var/log/ansible-run.log并重新部署。 
+
+
+| 062 | VASA Provider和SRA部署失败 | 有关详细信息、请参见/var/log/ansible-perl-errors.log上的错误日志并重新部署。 
+
+
+| 064 | version.xml验证失败 | 重新部署 
+
+
+| 065 | 无法访问Swagger页面URL | 重新部署 
+
+
+| 066 | 部署后步骤失败 | - 
+
+
+| 088 | 为jourald配置日志轮换失败 | 重新启动主VM。 
+
+
+| 089 | 更改摘要日志轮换配置文件的所有权失败 | 重新启动主VM。 
+|===
+|===
+
+
+| *重新启动错误代码* | * 工作流 * 
+
+
+| 067 | 正在等待rke2-server超时 
+
+
+| 101 | 无法重置维护/控制台用户密码 
+
+
+| 102 | 无法在重置维护/控制台用户密码期间删除密码文件 
+
+
+| 103 | 无法在库中更新新的维护/控制台用户密码 
+|===
+|===
+
+
+| *恢复错误代码* | * 工作流 * | *分辨率* 
+
+
+| 104 | 恢复后步骤失败。 | - 
+
+
+| 105 | 将内容复制到恢复卷失败。 | - 
+
+
+| 106 | 无法挂载恢复卷。 | *确保使用相同的SVM、并且SVM中存在恢复卷。(恢复卷名称以otvng_lif_recovery开头)*确保可从虚拟机访问管理Trident和数据LIF IP地址。*确保已在ONTAP上启用并正确配置了NFS/iSCSI协议。*确保提供的NFS/iSCSI DAT LIF IP地址正确且联机。*确保提供的用户名、密码、协议正确、并且用户有足够的权限来创建、挂载、克隆和删除。*重试恢复 
+|===

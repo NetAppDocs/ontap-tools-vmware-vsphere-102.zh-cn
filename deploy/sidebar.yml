@@ -1,0 +1,10 @@
+---
+section: deploy
+title: 部署适用于VMware vSphere的ONTAP工具
+entries:
+- title: 前提条件
+  url: "/deploy/prerequisites.html"
+- title: 部署 ONTAP 工具
+  url: "/deploy/ontap-tools-deployment.html"
+- title: 部署错误代码
+  url: "/deploy/deployment-error-codes.html"

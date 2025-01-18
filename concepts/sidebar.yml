@@ -1,0 +1,26 @@
+---
+section: concepts
+title: 概念
+entries:
+- title: 适用于VMware vSphere的ONTAP工具概述
+  url: "/concepts/ontap-tools-overview.html"
+- title: 关键概念和术语
+  url: "/concepts/ontap-tools-concepts-terms.html"
+- title: 基于角色的访问控制
+  entries:
+  - title: 概述
+    url: "/concepts/vcenter-server-role-based-access-control-features.html"
+  - title: vCenter Server权限
+    url: "/concepts/vcenter-server-permissions.html"
+  - title: 分配和修改vCenter Server的权限
+    url: "/concepts/key-points-about-assign-and-modify-permissions.html"
+  - title: 适用于VMware vSphere的ONTAP工具任务所需的特权
+    url: "/concepts/privileges-required.html"
+  - title: 建议的ONTAP角色
+    url: "/concepts/ontap-roles.html"
+- title: 适用于VMware vSphere的ONTAP工具的高可用性
+  url: "/concepts/high-availability.html"
+- title: AutoSupport
+  url: "/concepts/autosupport.html"
+- title: ONTAP工具管理器用户界面
+  url: "/configure/manager-user-interface.html"

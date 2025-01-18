@@ -1,0 +1,39 @@
+---
+permalink: manage/certificate-manage.html 
+sidebar: sidebar 
+keywords:  
+summary: 一个适用于VMware vSphere的ONTAP工具实例可以管理多个vCenter Server实例。适用于VMware vSphere的ONTAP工具使用适用于VASA Provider的自签名证书进行部署。这样、只能为Vvol数据存储库管理一个vCenter Server实例。 
+---
+= 管理证书
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+一个适用于VMware vSphere的ONTAP工具实例可以管理多个vCenter Server实例。适用于VMware vSphere的ONTAP工具使用适用于VASA Provider的自签名证书进行部署。这样、只能为Vvol数据存储库管理一个vCenter Server实例。如果您要管理多个vCenter Server实例、并且要在多个vCenter Server实例上启用vvol功能、则需要使用ONTAP工具管理器界面将自签名证书更改为自定义CA证书。您可以使用同一界面续订或刷新所有证书。
+
+
+NOTE: 将自签名升级到自定义CA时、不支持将不同的负载平衡器IP地址映射到不同的域。
+
+* 步骤 *
+
+. 从Web浏览器启动ONTAP工具管理器： `\https://loadBalanceIP:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于VMware vSphere的ONTAP工具管理员凭据登录。
+. 选择*Certificates*>*VASAPROVER*>*Renew*选项以续订证书。
++
+
+NOTE: 在续订证书之前、系统将一直处于脱机状态。
+
+. 要将自签名证书升级为自定义CA证书，请选择*Certificates*>*VASAPROVER*>*Upgrade to CA*选项。
++
+.. 在*将证书升级到自定义CA*弹出窗口中，上传服务器证书、服务器证书专用密钥、根CA证书和中间证书文件。工具提示提供证书的问题描述。
+.. 输入生成此证书的域名。
+.. 单击 * 升级 * 。
++
+
+NOTE: 系统将处于脱机状态、直到升级完成。
+
+
+
+

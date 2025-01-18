@@ -1,0 +1,28 @@
+---
+permalink: manage/igroup-management.html 
+sidebar: sidebar 
+keywords:  
+summary: 在ONTAP中、导出策略用于提供对主机的卷数据路径访问、而igrou则用于提供对ESXi主机的LUN数据路径访问。 
+---
+= 管理igrou和导出策略
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在ONTAP中、导出策略用于提供对主机的卷数据路径访问、而启动程序组(igrou)用于提供对ESXi主机的逻辑单元号(Logical Unit Number、LUN)数据路径访问。适用于VMware vSphere的ONTAP工具可轻松直观地创建igrop、并提供丰富的端到端工作流。为确保一致性、不支持在存储平台上直接创建iGroup。
+
+在vCenter Server中创建虚拟卷数据存储库或将其挂载到主机时、需要根据数据存储库的协议类型为主机授予对卷(NFS)或LUN (iSCSI)的访问权限。
+
+此导出策略是动态的、新导出策略是使用名称格式trident-u创建的。在ONTAP系统管理器中，转至*Storage*>*Storage VM*>*[Storage VM name]*>*Settings*>*Export Policies*以查看导出策略。
+
+适用于VMware vSphere的ONTAP工具中的igrou和导出策略可以高效地进行管理、并具有以下优势：
+
+* 支持迁移的导出策略和igrou。
+* 虚拟机输入和输出操作不会中断。
+* 支持在其他主机上挂载、无需手动干预。
+* 最大限度地减少了管理igrou和导出策略数量的需求。
+* 垃圾收集器会定期自动删除所有未使用的受管igrou和导出策略。
+* 如果在主机集群级别配置了数据存储库、则会创建igrop、其中包含添加到此igrop中的主机集群下的所有主机启动程序。
+

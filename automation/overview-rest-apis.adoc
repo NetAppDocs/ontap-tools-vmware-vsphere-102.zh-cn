@@ -1,0 +1,88 @@
+---
+permalink: automation/overview-rest-apis.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 介绍如何使用REST API执行多个ONTAP工具来执行VMware vSphere管理操作。REST API 通过 Swagger 网页公开。 
+---
+= REST API 概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+REST API可用于为VMware vSphere管理操作执行多个ONTAP工具。REST API 通过 Swagger 网页公开。
+
+您可以访问Swagger网页、网址为_API以显示REST \https://loadbalancerIP:8443/_文档、并手动问题描述API调用。
+
+
+NOTE: 所有API都具有Swagger页面中提及的请求正文和示例。本节中提供的工作流和示例仅供参考。
+
+
+
+== 如何访问适用于VMware vSphere REST API的ONTAP工具
+
+您可以通过多种不同方式访问 ONTAP REST API 。
+
+
+
+== 网络注意事项
+
+您可以通过以下接口连接到 REST API ：
+
+* 集群管理 LIF
+* 节点管理 LIF
+* SVM 管理 LIF
+
+
+您选择使用的LIF应配置为支持HTTPS管理协议。此外、网络中的防火墙配置应允许HTTPS流量。
+
+
+NOTE: 您应始终使用集群管理LIF。这将对所有节点上的API请求进行负载平衡、并避免节点脱机或遇到连接问题。如果您配置了多个集群管理生命周期、则在访问REST API方面、这些生命周期都是相等的。
+
+
+
+== 适用于VMware vSphere的ONTAP工具API联机文档页面
+
+您可以从适用于VMware vSphere的NetApp ONTAP工具插件的支持页面中的超链接访问Swagger。
+
+用于访问最新版本 API 的文档页面的 URL 格式为：
+
+`https：<loadbalancer_ip_address>`
+
+
+
+== 自定义软件和工具
+
+您可以使用多种不同的编程语言和工具访问适用于VMware vSphere API的ONTAP工具。常见选项包括 Python ， Java ， Curl 和 PowerShell 。使用 API 的程序，脚本或工具充当 REST Web 服务客户端。通过使用编程语言、可以更深入地了解API、并可以自动使用ONTAP工具进行VMware vSphere管理。
+
+用于直接访问最新版本 API 的基本 URL 格式为：
+
+`https：//API/API <loadbalancer_ip_address>`
+
+要访问支持多个版本的特定 API 版本， URL 的格式为：
+
+`https：//api/v1 <loadbalancer_ip_address>`
+
+
+
+== 通过Swagger UI访问适用于VMware vSphere的ONTAP工具API参考文档
+
+您可以通过本地ONTAP系统上的Swagger UI访问ONTAP REST API文档。
+
+* 开始之前 *
+
+您应具备以下条件：
+
+* ONTAP 集群管理 LIF 的 IP 地址或主机名
+* 有权访问ONTAP REST API的帐户的用户名和密码
+
+
+.步骤
+. 在浏览器中键入URL、然后按* Enter *：_\https：//URL/docs/API_<ip_address>
+. 使用ONTAP帐户登录
++
+此时将显示 ONTAP API 文档页面，其中 API 调用会按主要资源类别组织在底部。
+
+. 作为单个 API 调用的示例，向下滚动到 * 集群 * 类别，然后单击 * 获取 /cluster* 。
+
