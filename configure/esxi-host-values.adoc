@@ -19,24 +19,12 @@ summary: 您可以使用适用于 VMware vSphere 的 ONTAP 工具在 ESXi 主机
 
 == HBA/CNA适配器设置
 
-为NetApp存储系统设置建议的HBA超时设置。
+将以下参数设置为默认值：
 
-* * 磁盘 .QFullSampleSize*
-+
-对于所有配置、请将此值设置为32。设置此值有助于防止出现 I/O 错误。
-
-* * 磁盘 .QFullThreshold *
-+
-对于所有配置、请将此值设置为8。设置此值有助于防止出现 I/O 错误。
-
-* * Emulex FC HBA 超时 *
-+
-使用默认值。
-
-* * QLogic FC HBA 超时 *
-+
-使用默认值。
-
+* Disk.QFullSampleSize
+* Disk.QFullThreshold
+* Emulex FC HBA 超时
+* QLogic FC HBA 超时
 
 
 
