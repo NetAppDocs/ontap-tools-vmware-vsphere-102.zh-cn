@@ -342,7 +342,6 @@
   <block id="7f2d9eb042fad8493c138993f867cd80" category="paragraph">此时、此列表将刷新、您可以在此列表中看到新添加的存储后端。</block>
   <block id="f6c30a782639c90ebe44f3f343922077" category="summary">vCenter Server实例是中央管理平台、可用于控制主机、虚拟机(VM)和存储后端。</block>
   <block id="6245e46af5a3bdaf57696763c4214c70" category="doc">添加vCenter Server实例</block>
-  <block id="9a22df67797f0968951385551d26d202" category="paragraph">vCenter Server提供了一个中央管理平台、可用于控制主机、虚拟机(VM)和存储后端。</block>
   <block id="aaf638e0edd71bac35fef1b1149f3843" category="paragraph">您可以使用一个适用于VMware vSphere的ONTAP工具实例添加和管理多个vCenter Server实例。</block>
   <block id="0336e0a2e9f5b95c0d4178d3186ecbf6" category="list-text">从边栏中选择*vcCenter*。</block>
   <block id="4287076fd3b7cc772889cb75d012c773" category="list-text">选择*添加*到板载vCenter Server实例、并提供vCenter IP地址/主机名、用户名、密码和端口详细信息。</block>
@@ -676,7 +675,6 @@
   <block id="02ecc951ba9c7de4ba8def4213f1982e" category="list-text">要查看受保护的主机集群，请导航到*Host tools*&gt;*Protectation*&gt;* NetApp ONTAP cluster几何关系*。</block>
   <block id="88cea8a228e76d96b5b014b926e19795" category="summary">您可以使用适用于VMware vSphere的ONTAP工具远程插件界面向vCenter Server实例注册和取消注册VASA Provider。</block>
   <block id="062e7967273cea76dff9c3579a0c44db" category="doc">向vCenter Server实例注册VASA Provider</block>
-  <block id="b59d64b98fd315f6b2bb4cfbeef9a7fd" category="paragraph">您可以使用适用于VMware vSphere的ONTAP工具远程插件界面向vCenter Server实例注册和取消注册VASA Provider。VASA Provider设置部分显示了选定vCenter Server的VASA Provider注册状态。</block>
   <block id="711a24c1ed1e14106df5e83af675d10f" category="list-text">选择*Settings*&gt;*VASA Provider settings *。VASA提供程序注册状态显示为"未注册"。</block>
   <block id="7bd80420c7575554792093f90dbbe6ed" category="list-text">单击*注册*按钮注册VASA Provider。</block>
   <block id="2a8034ce8dbfe14fabe94e3ca6c7b860" category="list-text">输入VASA Provider的名称并为VMware vSphere应用程序提供ONTAP工具用户凭据、然后单击*注册*。</block>
@@ -1833,4 +1831,7 @@
   <block id="f66a3c183f0e736240b77f8b755c880e" category="list-text">Disk.QFullThreshold</block>
   <block id="19c08de7404551288e1274186e039ef4" category="list-text">Emulex FC HBA 超时</block>
   <block id="d46cddda4da7ec11f17472d11df95b68" category="list-text">QLogic FC HBA 超时</block>
+  <block id="a9a74d98e6d11230d876df92acb424fd" category="paragraph">将vCenter Server实例添加到适用于VMware vSphere的ONTAP工具中、以配置、管理和保护vCenter Server环境中的虚拟数据存储库。添加多个 vCenter Server 实例时，需要自定义 CA 证书才能在 ONTAP 工具和每个 vCenter Server 之间进行安全通信。</block>
+  <block id="56564ecb20e9cb45429b432b22f216f4" category="admonition">MPIO 设置不适用于 NVMe、NVMe/FC 和 NVMe/TCP 协议。</block>
+  <block id="07c9ecda15aaf26d8eef3770025ec27c" category="paragraph">您可以使用适用于VMware vSphere的ONTAP工具向vCenter Server实例注册VASA Provider。VASA Provider设置部分显示选定vCenter Server的VASA Provider注册状态。在多 vCenter 部署中，确保每个 vCenter Server 实例都有自定义 CA 证书。</block>
 </blocks>
